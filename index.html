@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-Hans"> 
+<head>
+<meta charset="UTF-8">
+<meta name="viewpoint" content="width=device-width,initial-scale=1.0">
+    <title>溶液聚合</title>
+<script type="text/javascript" src="js/jquery-3.6.0.min.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+<link rel="stylesheet" href="main.css">
+</head>
+<body>
+	<div class="left-col">
+	<div class="button" id="switch">
+        <div class="glitch"></div>
+        <div class="text" data-text="打开电动搅拌器">打开电动搅拌器</div>
+		<span class="platform">SCU</span>
+    </div>
+	<div class="button" id="magnifier">
+	<div class="glitch"></div>
+	<div class="text" data-text="放大视距">放大视距</div>
+	<span class="platform">SCU</span>
+	</div>
+	</div>
+	<div class="right-col">
+	<h1>🔘按顺序点击按钮观察变化</h1>
+	<hr>
+	<h1>来自高化期中展示多少给点分吧小组</h1>
+	</div>
+<div class="container">
+		<canvas id="canvas" width="400" height="500"></canvas>
+		<canvas id="copycanvas" width="600" height="500"></canvas>
+		<h1 id="tip">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将1g明胶与150ml去离子水加入三口瓶，温度达到60℃打开电动搅拌器。等待体系均一后加入18ml苯乙烯，2ml二乙烯基苯，0.31gBPO并将温度提升至85-88℃</h1>
+		<div class="content">
+			<div class="content-progress">
+			</div>
+		</div>
+</div>
+
+</body>
+</html>
+<style>
+#copycanvas{
+	margin-left: 0px;
+	position: absolute;
+	display: none;
+}
+</style>
