@@ -15,7 +15,6 @@ img12 = new Image();
 img13 = new Image();
 img14 = new Image();
 img15 = new Image();  
-<<<<<<< HEAD
 img1.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/solution.png"; 
 img2.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/initial-reactor-1.png";
 img3.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/resin.jpeg";
@@ -31,54 +30,21 @@ img12.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound-4.pn
 img13.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound-5.png";
 img14.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound-6.png";
 img15.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/redcircle.png";
-=======
-img1.src = "./component/solution.png"; 
-img2.src = "./component/initial-reactor-1.png";
-img3.src = "./component/resin.jpeg";
-img4.src = "./component/monomer.png";
-img5.src = "./component/decompose.png";
-img6.src = "./component/decompose-reverse.png";
-img7.src = "./component/st.png";
-img8.src = "./component/initial-reactor.png";
-img9.src = "./component/compound.png";
-img10.src = "./component/compound-2.png";
-img11.src = "./component/compound-3.png";
-img12.src = "./component/compound-4.png";
-img13.src = "./component/compound-5.png";
-img14.src = "./component/compound-6.png";
-img15.src = "./component/redcircle.png";
-
-//防抖函数
-function debounce(fn, delay) {
-    var timer = null; // 维护一个 timer
-    return function () {
-        var _this = this; // 取debounce执行作用域的this
-        var args = arguments;
-        if (timer) {
-            clearTimeout(timer);
-        }
-        timer = setTimeout(function () {
-            fn.apply(_this, args); // 用apply指向调用debounce的对象，相当于_this.fn(args);
-        }, delay);
-    };
-}
-
 //节流函数
 function throttle(fn, delay) {
-    var timer = null;
-    return function(){
+    var timer;
+    return function () {
         var _this = this;
         var args = arguments;
-        if(timer){
+        if (timer) {
             return;
         }
-        timer = setTimeout(function() {
-            fn.apply(_this,args);
-            timer = null;
-        },delay)
+        timer = setTimeout(function () {
+            fn.apply(_this, args);
+            timer = null; // 在delay后执行完fn之后清空timer，此时timer为假，throttle触发可以进入计时器
+        }, delay)
     }
 }
->>>>>>> main
 //	window.addEventListener("load", () => {
 	$(document).ready(function(){
         // 先获取画布
@@ -333,8 +299,9 @@ function throttle(fn, delay) {
         ctx1.fillText('溶液内含有BPO、苯乙烯单体、二乙烯基苯', 20, 485);
         ctx1.fillText('反应体系放大图', 190, 450);
     }
-    zoomInsysFn = throttle(zoomInsys(),90000);
-    document.querySelector('#magnifier').onclick = function(e){
+    zoomInsysFn = throttle(zoomInsys(),370000);
+    document.querySelector('#magnifier').onclick = 
+    function(e){
         zoomInsysFn(e,'throttle');
     }
     function zoomInsys(){
@@ -473,4 +440,5 @@ function throttle(fn, delay) {
             },1000/100);}}
 
 
-    });
+    }
+);
