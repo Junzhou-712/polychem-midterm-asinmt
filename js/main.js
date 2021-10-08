@@ -30,6 +30,37 @@ img12.src = "./component/compound-4.png";
 img13.src = "./component/compound-5.png";
 img14.src = "./component/compound-6.png";
 img15.src = "./component/redcircle.png";
+
+//防抖函数
+function debounce(fn, delay) {
+    var timer = null; // 维护一个 timer
+    return function () {
+        var _this = this; // 取debounce执行作用域的this
+        var args = arguments;
+        if (timer) {
+            clearTimeout(timer);
+        }
+        timer = setTimeout(function () {
+            fn.apply(_this, args); // 用apply指向调用debounce的对象，相当于_this.fn(args);
+        }, delay);
+    };
+}
+
+//节流函数
+function throttle(fn, delay) {
+    var timer = null;
+    return function(){
+        var _this = this;
+        var args = arguments;
+        if(timer){
+            return;
+        }
+        timer = setTimeout(function() {
+            fn.apply(_this,args);
+            timer = null;
+        },delay)
+    }
+}
 //	window.addEventListener("load", () => {
 	$(document).ready(function(){
         // 先获取画布
@@ -284,7 +315,10 @@ img15.src = "./component/redcircle.png";
         ctx1.fillText('溶液内含有BPO、苯乙烯单体、二乙烯基苯', 20, 485);
         ctx1.fillText('反应体系放大图', 190, 450);
     }
-    document.querySelector('#magnifier').onclick = zoomInsys;
+    zoomInsysFn = throttle(zoomInsys(),90000);
+    document.querySelector('#magnifier').onclick = function(e){
+        zoomInsysFn(e,'throttle');
+    }
     function zoomInsys(){
         $("#tip").css("display","none");
         if(radius <= 130){
