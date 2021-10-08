@@ -7,8 +7,9 @@
   }
 
   body{
-    width: 1300px;
-    background: url("./component/bg.jpeg") no-repeat;
+    width: 100%;
+    height: 100%;
+    background: #e9f1f4;
     background-size: cover;
     align-items: center;
     justify-content: center;
@@ -63,12 +64,11 @@
     background: hsl(180, 100%, 50%, 50%);
   }
   .button::after {
-    background: #18045f;
+    
   }
 
 
   .glitch {
-    background: #18045f;
     box-shadow: 0 0 0 1px hsl(180, 100%, 50%) inset;
     z-index: 10;
     opacity: 0;
@@ -180,11 +180,10 @@
   }
 
   .container{
-    margin-top: 20px;
+    margin-top: 5%;
     margin-left: 5%;
-    margin-right: 300px;
-    width: 100%;
-    height: 590px;
+    width: 90%;
+    height: 70%;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     background-color: rgba(255, 255, 255, 0.25);
@@ -193,6 +192,6 @@
   }
 
   #tip{
-      color: whitesmoke;
+      color: #333434;
   }
 

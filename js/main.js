@@ -280,7 +280,7 @@ img15.src = "./component/redcircle.png";
     img1.onload = function(){
         ctx1.drawImage(img1,0,0,600,400);
         ctx1.font = '30px 微软雅黑';
-        ctx1.fillStyle = "#fff";
+        ctx1.fillStyle = "#000";
         ctx1.fillText('溶液内含有BPO、苯乙烯单体、二乙烯基苯', 20, 485);
         ctx1.fillText('反应体系放大图', 190, 450);
     }
