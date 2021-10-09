@@ -21,13 +21,14 @@
   }
 
   .right-col{
-    margin-left: 300px;
+    text-align: center;
     }
 
 
   .button {
     width: 300px;
     height: 50px;
+
     background: none;
     display: flex;
     align-items: center;
@@ -60,13 +61,8 @@
   }
 
   .button::before {
-    left: 2px;
-    background: hsl(180, 100%, 50%, 50%);
+    background: #e9f1f4;
   }
-  .button::after {
-    
-  }
-
 
   .glitch {
     box-shadow: 0 0 0 1px hsl(180, 100%, 50%) inset;
@@ -77,7 +73,7 @@
   .text {
     font-size: 24px;
     font-weight: 800;
-    color: white;
+    color: black;
     position: relative;
     z-index: 15;
   }
@@ -91,8 +87,12 @@
       -1px -2px hsl(50deg, 100%, 60%);
     opacity: 0;
   }
-
+  .button:hover{
+    background: linear-gradient(to right,#e9f1f4, #fdbb2d);
+    border-radius: 15px;
+  }
   .button:hover .glitch,
+
   .button:hover .text::before {
     animation: glitch-effect 2s infinite;
     opacity: 1;
@@ -181,9 +181,10 @@
 
   .container{
     margin-top: 5%;
+    margin-bottom: 3%;
     margin-left: 5%;
     width: 90%;
-    height: 70%;
+    height: 75%;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     background-color: rgba(255, 255, 255, 0.25);
@@ -195,3 +196,7 @@
       color: #333434;
   }
 
+#canvas{
+  margin-left: 10%;
+  margin-top: 10%;
+}
