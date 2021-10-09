@@ -50,6 +50,16 @@ function debounce(fn, delay) {
         const cvs = document.querySelector("canvas");
         // 再返回一个2d的绘图环境
         const ctx = cvs.getContext("2d");
+        //设置水颜色
+		const waterColor = ctx.createLinearGradient(0,0,300,0)
+        waterColor.addColorStop(0,"#39eafd");
+        waterColor.addColorStop(0.3,"#0b648f");
+        waterColor.addColorStop(1,"#0096c7");
+        //设置油滴颜色
+        const oilColor = ctx.createLinearGradient(0,0,300,0)
+        oilColor.addColorStop(0,"#dd8130");
+        oilColor.addColorStop(1,"#ffc300");
+        let playIdx = 0 //播放动画检验符
         let flag = false;//搅拌器开关
         let radius = 0;//视距初始值
         let oringinX = 200;//直线运动初始值
@@ -61,16 +71,6 @@ function debounce(fn, delay) {
         let img8Y = 25;
         //放大视距按钮判断（防止bug）
         let btnOn = false;
-    
-		const waterColor = ctx.createLinearGradient(0,0,300,0)
-        waterColor.addColorStop(0,"#39eafd");
-        waterColor.addColorStop(0.3,"#0b648f");
-        waterColor.addColorStop(1,"#0096c7");
-
-        const oilColor = ctx.createLinearGradient(0,0,300,0)
-        oilColor.addColorStop(0,"#dd8130");
-        oilColor.addColorStop(1,"#ffc300");
-
 
         //模拟单体「布朗」运动
         function brownianMotion(min, max) {
@@ -299,7 +299,6 @@ function debounce(fn, delay) {
         ctx1.fillText('反应体系放大图', 190, 450);
     }
    var magnifier = document.getElementById('magnifier');
-   let timer = null;
    var zoomInsysF = throttle(zoomInsys,1000);
    //节流函数
     function throttle(fn, threshold) {
@@ -314,7 +313,7 @@ function debounce(fn, delay) {
         }
 
 }
-let playIdx = 0
+
     magnifier.onclick = function(){
         if(playIdx == 0){
             zoomInsysF()
@@ -455,7 +454,10 @@ let playIdx = 0
                     },49000)
      
                 }  
-            },10);}}
+            },10);
+        }
+    }
     }
 
+    
 );    
