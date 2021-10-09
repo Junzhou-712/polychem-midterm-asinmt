@@ -1,4 +1,3 @@
-
 //预加载图片
 img1 = new Image(); 
 img2 = new Image();
@@ -15,42 +14,52 @@ img12 = new Image();
 img13 = new Image();
 img14 = new Image();
 img15 = new Image();  
-img1.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/solution.png"; 
-img2.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/initial-reactor-1.png";
-img3.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/resin.jpeg";
-img4.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/monomer.png";
-img5.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/decompose.png";
-img6.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/decompose-reverse.png";
-img7.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/st.png";
-img8.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/initial-reactor.png";
-img9.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound.png";
-img10.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound-2.png";
-img11.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound-3.png";
-img12.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound-4.png";
-img13.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound-5.png";
-img14.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/compound-6.png";
-img15.src = "https://oss1222.oss-cn-chengdu.aliyuncs.com/component/redcircle.png";
-//节流函数
-function throttle(fn, delay) {
-    var timer;
+img1.src = "./component/solution.png"; 
+img2.src = "./component/initial-reactor-1.png";
+img3.src = "./component/resin.jpeg";
+img4.src = "./component/monomer.png";
+img5.src = "./component/decompose.png";
+img6.src = "./component/decompose-reverse.png";
+img7.src = "./component/st.png";
+img8.src = "./component/initial-reactor.png";
+img9.src = "./component/compound.png";
+img10.src = "./component/compound-2.png";
+img11.src = "./component/compound-3.png";
+img12.src = "./component/compound-4.png";
+img13.src = "./component/compound-5.png";
+img14.src = "./component/compound-6.png";
+img15.src = "./component/redcircle.png";
+//防抖函数
+function debounce(fn, delay) {
+    var timer = null; // 维护一个 timer
     return function () {
-        var _this = this;
+        var _this = this; // 取debounce执行作用域的this
         var args = arguments;
         if (timer) {
-            return;
+            clearTimeout(timer);
         }
         timer = setTimeout(function () {
-            fn.apply(_this, args);
-            timer = null; // 在delay后执行完fn之后清空timer，此时timer为假，throttle触发可以进入计时器
-        }, delay)
-    }
+            fn.apply(_this, args); // 用apply指向调用debounce的对象，相当于_this.fn(args);
+        }, delay);
+    };
 }
+
 //	window.addEventListener("load", () => {
 	$(document).ready(function(){
         // 先获取画布
         const cvs = document.querySelector("canvas");
         // 再返回一个2d的绘图环境
         const ctx = cvs.getContext("2d");
+        //设置水颜色
+		const waterColor = ctx.createLinearGradient(0,0,300,0)
+        waterColor.addColorStop(0,"#39eafd");
+        waterColor.addColorStop(0.3,"#0b648f");
+        waterColor.addColorStop(1,"#0096c7");
+        //设置油滴颜色
+        const oilColor = ctx.createLinearGradient(0,0,300,0)
+        oilColor.addColorStop(0,"#dd8130");
+        oilColor.addColorStop(1,"#ffc300");
+        let playIdx = 0 //播放动画检验符
         let flag = false;//搅拌器开关
         let radius = 0;//视距初始值
         let oringinX = 200;//直线运动初始值
@@ -62,16 +71,6 @@ function throttle(fn, delay) {
         let img8Y = 25;
         //放大视距按钮判断（防止bug）
         let btnOn = false;
-    
-		const waterColor = ctx.createLinearGradient(0,0,300,0)
-        waterColor.addColorStop(0,"#39eafd");
-        waterColor.addColorStop(0.3,"#0b648f");
-        waterColor.addColorStop(1,"#0096c7");
-
-        const oilColor = ctx.createLinearGradient(0,0,300,0)
-        oilColor.addColorStop(0,"#dd8130");
-        oilColor.addColorStop(1,"#ffc300");
-
 
         //模拟单体「布朗」运动
         function brownianMotion(min, max) {
@@ -85,35 +84,35 @@ function throttle(fn, delay) {
 
         function createBlender0(){
             ctx.beginPath();
-            ctx.arc(300, 400, 100, 0, Math.PI, false);
+            ctx.arc(100, 200, 100, 0, Math.PI, false);
             ctx.fillStyle = waterColor;
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(200, 300, 200, 100);
+            ctx.fillRect(0, 100, 200, 100);
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = oilColor;
-            ctx.fillRect(200, 250, 200, 50);
+            ctx.fillRect(0, 50, 200, 50);
             ctx.fill();
-            fillRoundRect(ctx, 298, 200, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 0, 4, 245, 1, "#1b1b1b");
         }
 
         function createBlender1(){
             ctx.beginPath();
-            ctx.arc(300, 400, 100, 0, Math.PI, false);
+            ctx.arc(100, 200, 100, 0, Math.PI, false);
             ctx.fillStyle = waterColor;
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(200, 300, 200, 100);
+            ctx.fillRect(0, 100, 200, 100);
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(200, 250, 200, 50);
+            ctx.fillRect(0, 50, 200, 50);
             ctx.fill();
-            fillRoundRect(ctx, 298, 200, 4, 245, 1, "#1b1b1b");
-            fillRoundRect(ctx, 298, 200, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 0, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 0, 4, 245, 1, "#1b1b1b");
         }
 
         //填充圆角矩形绘制方法
@@ -206,7 +205,7 @@ function throttle(fn, delay) {
             function Paddle(){};
             Paddle.prototype = {
                 init:function(){
-                    this.midX = 300;
+                    this.midX = 100;
                     //this.rightX = 350;
                     this.speed = 0.05;
                     this.angle = Math.PI/2;
@@ -216,15 +215,15 @@ function throttle(fn, delay) {
                 draw:function(){
                     ctx.beginPath();
                     ctx.fillStyle = "#c8c8c8";
-                    ctx.moveTo(300, 445);
-                    ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 435);
-                    ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 455);
+                    ctx.moveTo(100, 245);
+                    ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 235);
+                    ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 255);
                     ctx.fill();
                     ctx.beginPath();
                     ctx.fillStyle = "#c8c8c8";
-                    ctx.moveTo(300, 445);
-                    ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 435);
-                    ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 455);
+                    ctx.moveTo(100, 245);
+                    ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 235);
+                    ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 255);
                     ctx.fill();
                 },
                 rotate:function(){
@@ -238,8 +237,8 @@ function throttle(fn, delay) {
         function Monomer(){};
             Monomer.prototype = {
                 init:function(){
-                    this.x = brownianMotion(210, 390);
-                    this.y = brownianMotion(250, 400);
+                    this.x = brownianMotion(10, 190);
+                    this.y = brownianMotion(50, 200);
                     this.r = brownianMotion(2,6);
                     this.vX = brownianMotion(-1,1);
                     this.vY = brownianMotion(-1,1);
@@ -253,9 +252,9 @@ function throttle(fn, delay) {
                 move:function(){
                     this.x += this.vX;
                     this.y += this.vY;
-                    if(this.x - this.r < 210||this.x+this.r>390)//当球碰到搅拌器x轴运动边缘就反弹
+                    if(this.x - this.r < 10||this.x+this.r>190)//当球碰到搅拌器x轴运动边缘就反弹
                         this.vX = -this.vX;
-                    if(this.y - this.r < 250||this.y+this.r>400)//当球碰到搅拌器y轴运动边缘就反弹
+                    if(this.y - this.r < 50||this.y+this.r>200)//当球碰到搅拌器y轴运动边缘就反弹
                         this.vY = -this.vY;
                     this.draw();
                 }
@@ -299,13 +298,31 @@ function throttle(fn, delay) {
         ctx1.fillText('溶液内含有BPO、苯乙烯单体、二乙烯基苯', 20, 485);
         ctx1.fillText('反应体系放大图', 190, 450);
     }
-    zoomInsysFn = throttle(zoomInsys(),370000);
-    document.querySelector('#magnifier').onclick = 
-    function(e){
-        zoomInsysFn(e,'throttle');
+   var magnifier = document.getElementById('magnifier');
+   var zoomInsysF = throttle(zoomInsys,1000);
+   //节流函数
+    function throttle(fn, threshold) {
+    let prev = Date.now();
+    return function() {
+        let context = this, args = arguments;
+        let now = Date.now();
+        if( now - prev > threshold){
+            prev = now;
+            fn.apply(context,args);
+        }
+        }
+
+}
+
+    magnifier.onclick = function(){
+        if(playIdx == 0){
+            zoomInsysF()
+        } else{
+        }
     }
     function zoomInsys(){
         $("#tip").css("display","none");
+        playIdx = 1;
         if(radius <= 130){
             var systemDraw = setInterval(function(){
                 ctx1.clearRect(0, 0, 600, 500);
@@ -437,8 +454,10 @@ function throttle(fn, delay) {
                     },49000)
      
                 }  
-            },1000/100);}}
-
-
+            },10);
+        }
     }
-);
+    }
+
+    
+);    
