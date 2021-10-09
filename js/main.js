@@ -1,4 +1,3 @@
-
 //预加载图片
 img1 = new Image(); 
 img2 = new Image();
@@ -44,21 +43,7 @@ function debounce(fn, delay) {
         }, delay);
     };
 }
-//节流函数
-function throttle(fn, delay) {
-    var timer;
-    return function () {
-        var _this = this;
-        var args = arguments;
-        if (timer) {
-            return;
-        }
-        timer = setTimeout(function () {
-            fn.apply(_this, args);
-            timer = null; // 在delay后执行完fn之后清空timer，此时timer为假，throttle触发可以进入计时器
-        }, delay)
-    }
-}
+
 //	window.addEventListener("load", () => {
 	$(document).ready(function(){
         // 先获取画布
@@ -313,8 +298,33 @@ function throttle(fn, delay) {
         ctx1.fillText('溶液内含有BPO、苯乙烯单体、二乙烯基苯', 20, 485);
         ctx1.fillText('反应体系放大图', 190, 450);
     }
+   var magnifier = document.getElementById('magnifier');
+   let timer = null;
+   var zoomInsysF = throttle(zoomInsys,1000);
+   //节流函数
+    function throttle(fn, threshold) {
+    let prev = Date.now();
+    return function() {
+        let context = this, args = arguments;
+        let now = Date.now();
+        if( now - prev > threshold){
+            prev = now;
+            fn.apply(context,args);
+            console.log(Date.now());
+        }
+        }
+
+}
+let playIdx = 0
+    magnifier.onclick = function(){
+        if(playIdx == 0){
+            zoomInsysF()
+        } else{
+        }
+    }
     function zoomInsys(){
         $("#tip").css("display","none");
+        playIdx = 1;
         if(radius <= 130){
             var systemDraw = setInterval(function(){
                 ctx1.clearRect(0, 0, 600, 500);
@@ -446,12 +456,7 @@ function throttle(fn, delay) {
                     },49000)
      
                 }  
-            },1000/100);}}
-            zoomInsysFn = throttle(zoomInsys(),370000);
-            document.querySelector('#magnifier').onclick = 
-            function(e){
-                zoomInsysFn(e,'throttle');
-            }
+            },10);}}
     }
 
 );    
