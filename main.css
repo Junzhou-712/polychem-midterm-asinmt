@@ -28,6 +28,7 @@
   .button {
     width: 300px;
     height: 50px;
+
     background: none;
     display: flex;
     align-items: center;
@@ -60,7 +61,7 @@
   }
 
   .button::before {
-    left: 2px;
+    background: #e9f1f4;
   }
 
   .glitch {
@@ -86,8 +87,12 @@
       -1px -2px hsl(50deg, 100%, 60%);
     opacity: 0;
   }
-
+  .button:hover{
+    background: linear-gradient(to right,#e9f1f4, #fdbb2d);
+    border-radius: 15px;
+  }
   .button:hover .glitch,
+
   .button:hover .text::before {
     animation: glitch-effect 2s infinite;
     opacity: 1;
