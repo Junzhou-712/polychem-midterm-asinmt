@@ -99,35 +99,35 @@ function throttle(fn, delay) {
 
         function createBlender0(){
             ctx.beginPath();
-            ctx.arc(300, 400, 100, 0, Math.PI, false);
+            ctx.arc(100, 400, 100, 0, Math.PI, false);
             ctx.fillStyle = waterColor;
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(200, 300, 200, 100);
+            ctx.fillRect(0, 300, 200, 100);
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = oilColor;
-            ctx.fillRect(200, 250, 200, 50);
+            ctx.fillRect(0, 250, 200, 50);
             ctx.fill();
-            fillRoundRect(ctx, 298, 200, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 200, 4, 245, 1, "#1b1b1b");
         }
 
         function createBlender1(){
             ctx.beginPath();
-            ctx.arc(300, 400, 100, 0, Math.PI, false);
+            ctx.arc(100, 400, 100, 0, Math.PI, false);
             ctx.fillStyle = waterColor;
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(200, 300, 200, 100);
+            ctx.fillRect(0, 300, 200, 100);
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(200, 250, 200, 50);
+            ctx.fillRect(0, 250, 200, 50);
             ctx.fill();
-            fillRoundRect(ctx, 298, 200, 4, 245, 1, "#1b1b1b");
-            fillRoundRect(ctx, 298, 200, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 200, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 200, 4, 245, 1, "#1b1b1b");
         }
 
         //填充圆角矩形绘制方法
@@ -220,7 +220,7 @@ function throttle(fn, delay) {
             function Paddle(){};
             Paddle.prototype = {
                 init:function(){
-                    this.midX = 300;
+                    this.midX = 100;
                     //this.rightX = 350;
                     this.speed = 0.05;
                     this.angle = Math.PI/2;
@@ -230,13 +230,13 @@ function throttle(fn, delay) {
                 draw:function(){
                     ctx.beginPath();
                     ctx.fillStyle = "#c8c8c8";
-                    ctx.moveTo(300, 445);
+                    ctx.moveTo(100, 445);
                     ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 435);
                     ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 455);
                     ctx.fill();
                     ctx.beginPath();
                     ctx.fillStyle = "#c8c8c8";
-                    ctx.moveTo(300, 445);
+                    ctx.moveTo(100, 445);
                     ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 435);
                     ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 455);
                     ctx.fill();
@@ -252,7 +252,7 @@ function throttle(fn, delay) {
         function Monomer(){};
             Monomer.prototype = {
                 init:function(){
-                    this.x = brownianMotion(210, 390);
+                    this.x = brownianMotion(10, 190);
                     this.y = brownianMotion(250, 400);
                     this.r = brownianMotion(2,6);
                     this.vX = brownianMotion(-1,1);
@@ -447,12 +447,11 @@ function throttle(fn, delay) {
      
                 }  
             },1000/100);}}
-
-
+            zoomInsysFn = throttle(zoomInsys(),370000);
+            document.querySelector('#magnifier').onclick = 
+            function(e){
+                zoomInsysFn(e,'throttle');
+            }
     }
+
 );    
-zoomInsysFn = throttle(zoomInsys(),370000);
-document.querySelector('#magnifier').onclick = 
-function(e){
-    zoomInsysFn(e,'throttle');
-}
