@@ -310,7 +310,6 @@ function debounce(fn, delay) {
         if( now - prev > threshold){
             prev = now;
             fn.apply(context,args);
-            console.log(Date.now());
         }
         }
 
