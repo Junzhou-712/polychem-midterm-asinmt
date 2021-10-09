@@ -84,35 +84,35 @@ function debounce(fn, delay) {
 
         function createBlender0(){
             ctx.beginPath();
-            ctx.arc(100, 400, 100, 0, Math.PI, false);
+            ctx.arc(100, 200, 100, 0, Math.PI, false);
             ctx.fillStyle = waterColor;
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(0, 300, 200, 100);
+            ctx.fillRect(0, 100, 200, 100);
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = oilColor;
-            ctx.fillRect(0, 250, 200, 50);
+            ctx.fillRect(0, 50, 200, 50);
             ctx.fill();
-            fillRoundRect(ctx, 98, 200, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 0, 4, 245, 1, "#1b1b1b");
         }
 
         function createBlender1(){
             ctx.beginPath();
-            ctx.arc(100, 400, 100, 0, Math.PI, false);
+            ctx.arc(100, 200, 100, 0, Math.PI, false);
             ctx.fillStyle = waterColor;
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(0, 300, 200, 100);
+            ctx.fillRect(0, 100, 200, 100);
             ctx.fill();
             ctx.beginPath();
             ctx.fillStyle = waterColor;
-            ctx.fillRect(0, 250, 200, 50);
+            ctx.fillRect(0, 50, 200, 50);
             ctx.fill();
-            fillRoundRect(ctx, 98, 200, 4, 245, 1, "#1b1b1b");
-            fillRoundRect(ctx, 98, 200, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 0, 4, 245, 1, "#1b1b1b");
+            fillRoundRect(ctx, 98, 0, 4, 245, 1, "#1b1b1b");
         }
 
         //填充圆角矩形绘制方法
@@ -215,15 +215,15 @@ function debounce(fn, delay) {
                 draw:function(){
                     ctx.beginPath();
                     ctx.fillStyle = "#c8c8c8";
-                    ctx.moveTo(100, 445);
-                    ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 435);
-                    ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 455);
+                    ctx.moveTo(100, 245);
+                    ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 235);
+                    ctx.lineTo(this.midX - this.length * Math.sin(this.angle), 255);
                     ctx.fill();
                     ctx.beginPath();
                     ctx.fillStyle = "#c8c8c8";
-                    ctx.moveTo(100, 445);
-                    ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 435);
-                    ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 455);
+                    ctx.moveTo(100, 245);
+                    ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 235);
+                    ctx.lineTo(this.midX + this.length * Math.sin(this.angle), 255);
                     ctx.fill();
                 },
                 rotate:function(){
@@ -238,7 +238,7 @@ function debounce(fn, delay) {
             Monomer.prototype = {
                 init:function(){
                     this.x = brownianMotion(10, 190);
-                    this.y = brownianMotion(250, 400);
+                    this.y = brownianMotion(50, 200);
                     this.r = brownianMotion(2,6);
                     this.vX = brownianMotion(-1,1);
                     this.vY = brownianMotion(-1,1);
@@ -252,9 +252,9 @@ function debounce(fn, delay) {
                 move:function(){
                     this.x += this.vX;
                     this.y += this.vY;
-                    if(this.x - this.r < 210||this.x+this.r>390)//当球碰到搅拌器x轴运动边缘就反弹
+                    if(this.x - this.r < 10||this.x+this.r>190)//当球碰到搅拌器x轴运动边缘就反弹
                         this.vX = -this.vX;
-                    if(this.y - this.r < 250||this.y+this.r>400)//当球碰到搅拌器y轴运动边缘就反弹
+                    if(this.y - this.r < 50||this.y+this.r>200)//当球碰到搅拌器y轴运动边缘就反弹
                         this.vY = -this.vY;
                     this.draw();
                 }
