@@ -1,17 +1,18 @@
-# 四川大学高分子化学半期课程展示 
-主要为html+css+js原生代码
-[demo页面](https://junzhou-712.github.io/polychem-midterm-asinmt/)
-主要为四川大学高分子化学半期课程展示参考使用。
-页面特色：
-* 更新于2021年10月08日
-* 添加了全新的背景样式
-* 对按钮进行了节流限制
-* 改变了按钮的样式
--------
-* 采用DOM制作响应式页面
-* 通过随机粒子等效果描述悬浮聚合的宏观特征和微观特征
+<div align="center">
+[![forthebadge](https://forthebadge.com/images/badges/made-with-typescript.svg)](https://forthebadge.com)
+</div>
+**Polymerisation** is a scalable web animation in Vue.js and Three.js framework
+
+[DEMO](https://junzhou-712.github.io/polychem-midterm-asinmt/)
+
+Main Features(Updated by Sep/24/22):
+
+* UI design
+* optimize by Three.js modeling
+* DOM responsive page
+* implement arbitrarily monoply
 
 
 
-原理参考：
-潘祖仁. 《高分子化学》
+Referrence：
+Zuren Pan. *Polymer Science*
