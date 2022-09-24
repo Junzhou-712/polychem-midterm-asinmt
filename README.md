@@ -1,5 +1,5 @@
 # 四川大学高分子化学半期课程展示 
-主要为html+css+js原生代码
+采用Vue.js和Three.js 框架优化
 [demo页面](https://junzhou-712.github.io/polychem-midterm-asinmt/)
 主要为四川大学高分子化学半期课程展示参考使用。
 页面特色：
