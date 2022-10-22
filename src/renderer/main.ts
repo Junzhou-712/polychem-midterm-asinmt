@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
+/* eslint-disable @typescript-eslint/no-empty-function */
 import { createRenderer } from "vue";
 import { Container, Sprite, Text, Texture } from "pixi.js";
 
@@ -28,7 +30,6 @@ const renderer = createRenderer<Container, Container>({
         break;
 
       default:
-        el[key] = nextValue;
         break;
     }
   },

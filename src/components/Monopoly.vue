@@ -4,8 +4,8 @@
     </Container>
 </template>
 
-<script lang="ts">
-import decomposeImg from "../assets/decompose.png";
+<script lang="ts" setup>
+    import decomposeImg from "../assets/decompose.png";
 
 </script>
 

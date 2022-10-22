@@ -1,9 +1,9 @@
 <template>
-  <Container><Sprite :texture="logo"></Sprite></Container>
+  <React></React>
 </template>
 
-<script lang="ts">
-import logo from "./assets/logo.png";
+<script lang="ts" setup>
+import React from "./components/React.vue";
 </script>
 
 <style lang="scss">
