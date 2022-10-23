@@ -1,4 +1,4 @@
-import { Container, Sprite, Text, Texture } from "pixi.js";
+import { Container, Sprite, Text, Texture, TextureSource } from "pixi.js";
 import { Component, ComputedOptions, createRenderer, MethodOptions } from "vue";
 
 const renderer = createRenderer<Container, Container>({
@@ -12,15 +12,15 @@ const renderer = createRenderer<Container, Container>({
         element = new Sprite();
         break;
       default:
-        throw new Error(`没有实现的类型 ${type}`);
+        throw new Error(`Not implemented ${type}`);
     }
     return element;
   },
-  insert(el, parent) {
+  insert(el: any, parent: { addChild: (arg0: any) => void; }) {
     parent.addChild(el);
   },
 
-  patchProp(el, key, _, nextValue) {
+  patchProp(el: any, key: string | number, _: any, nextValue: TextureSource | TextureSource[]) {
     console.log(key);
     switch (key) {
       case "texture":
@@ -28,27 +28,27 @@ const renderer = createRenderer<Container, Container>({
         break;
 
       default:
-        // el[key] = nextValue;
+        el[key] = nextValue;
         break;
     }
   },
-  remove(el) {
+  remove(el: { parent: { removeChild: (arg0: any) => void; }; }) {
     if (el.parent) {
       el.parent.removeChild(el);
     }
   },
-  createText(text) {
+  createText(text: string | number | undefined) {
     return new Text(text);
   },
-  createComment(text) {
+  createComment(text: string | number | undefined) {
     return new Text(text);
   },
   setText() {},
   setElementText() {},
-  parentNode(node) {
+  parentNode(node: { parent: any; }) {
     return node.parent;
   },
-  nextSibling(node) {
+  nextSibling() {
     return null;
   },
 });

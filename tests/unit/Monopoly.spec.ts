@@ -1,6 +1,5 @@
-import { Monopoly } from "@/react/Monopoly";
-import { expect } from "chai";
-import { describe } from "mocha";
+import { Monopoly } from "../../src/react/Monopoly";
+import { expect, describe, it } from "vitest";
 
 describe("Monopoly.vue", () => {
   it("Monopoly move", () => {
