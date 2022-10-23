@@ -1,5 +1,5 @@
-import { Monopoly } from "../../src/react/Monopoly";
-import { expect, describe, it } from "vitest";
+import { Monopoly, createMonopoly } from "../../src/react/Monopoly";
+import { expect, describe, it, vi } from "vitest";
 
 describe("Monopoly.vue", () => {
   it("Monopoly move", () => {
@@ -16,5 +16,13 @@ describe("Monopoly.vue", () => {
 
         expect(monopoly.x ^ monopoly.y).equal(1);
       };
+  });
+  it("Monopoly can create automatically", () => {
+    vi.useFakeTimers();
+    const monopolys = [];
+    createMonopoly(monopolys);
+    vi.advanceTimersByTime(4000);
+    expect(monopolys.length).toBe(4);
+    vi.resetAllMocks();
   });
 });

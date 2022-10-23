@@ -1,6 +1,11 @@
-**Polymerisation** is a scalable web animation in Vue.js and Three.js framework
+**Polymerisation** is a scalable web animation in Vue.js and pixi.js framework
 
-[DEMO](https://junzhou-712.github.io/polychem-midterm-asinmt/)
+Skill set:
+- TypeScript
+- Vue
+- pixi.js
+- Vite
+- Vitest
 
 Main Features(Updated by Sep/24/22):
 

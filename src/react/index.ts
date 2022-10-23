@@ -1,7 +1,7 @@
 // application service
 export * from "./Monopoly";
 import { Application } from "pixi.js";
-import { Monopoly, moveMonopolys } from "./Monopoly";
+import { createMonopoly, Monopoly, moveMonopolys } from "./Monopoly";
 
 export let react: Application;
 
@@ -22,6 +22,7 @@ type initReactOptions = {
   monopolys: Monopoly[];
 };
 export function initReact({ monopolys }: initReactOptions): initReactResult {
+  createMonopoly(monopolys);
   run(monopolys);
 
   return {
