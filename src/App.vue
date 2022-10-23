@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts" setup>
-import React from "./components/React.vue";
+import React from './components/React.vue';
 </script>
 
 <style lang="scss">

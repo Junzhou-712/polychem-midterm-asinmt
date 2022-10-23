@@ -1,7 +1,5 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-/* eslint-disable @typescript-eslint/no-empty-function */
-import { createRenderer } from "vue";
 import { Container, Sprite, Text, Texture } from "pixi.js";
+import { Component, ComputedOptions, createRenderer, MethodOptions } from "vue";
 
 const renderer = createRenderer<Container, Container>({
   createElement(type: string) {
@@ -22,7 +20,7 @@ const renderer = createRenderer<Container, Container>({
     parent.addChild(el);
   },
 
-  patchProp(el, key, prevValue, nextValue) {
+  patchProp(el, key, _, nextValue) {
     console.log(key);
     switch (key) {
       case "texture":
@@ -30,6 +28,7 @@ const renderer = createRenderer<Container, Container>({
         break;
 
       default:
+        // el[key] = nextValue;
         break;
     }
   },
@@ -54,6 +53,6 @@ const renderer = createRenderer<Container, Container>({
   },
 });
 
-export function createApp(rootComponent) {
+export function createApp(rootComponent: Component<any, any, any, ComputedOptions, MethodOptions>) {
   return renderer.createApp(rootComponent);
 }
