@@ -14,4 +14,5 @@ const {monopolys} = initReact({
     monopolys: reactive([]),
 });
 
+
 </script>

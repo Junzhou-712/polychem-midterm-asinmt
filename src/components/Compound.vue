@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <Container>
         <Sprite :texture="compoundImg"></Sprite>
     </Container>
@@ -18,4 +18,4 @@ const { compound } = defineProps({
 
 <style scoped>
 
-</style> -->
+</style>
