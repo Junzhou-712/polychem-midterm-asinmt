@@ -2,6 +2,7 @@
 export * from "./Monopoly";
 import { Application } from "pixi.js";
 import { createMonopoly, Monopoly, moveMonopolys } from "./Monopoly";
+import { createCompound, moveCompound, Compound } from "./Compound";
 
 export let react: Application;
 
@@ -17,16 +18,22 @@ export function getRootContainer() {
 }
 interface initReactResult {
   monopolys: Monopoly[];
+  compounds: Compound[];
 }
 type initReactOptions = {
   monopolys: Monopoly[];
+  compounds: Compound[];
 };
-export function initReact({ monopolys }: initReactOptions): initReactResult {
+export function initReact(
+  { monopolys }: initReactOptions,
+  { compounds }: initReactOptions
+): initReactResult {
   createMonopoly(monopolys);
   run(monopolys);
 
   return {
     monopolys,
+    compounds,
   };
 }
 
