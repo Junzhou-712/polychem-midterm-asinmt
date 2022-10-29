@@ -6,6 +6,8 @@ describe("Monopoly.vue", () => {
     function createMonopoly() {
       const monopoly = new Monopoly();
       monopoly.speed = 1;
+      monopoly.x = 0;
+      monopoly.y = 0;
       return monopoly;
     }
     it("Monopoly can move"),

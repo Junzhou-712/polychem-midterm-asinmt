@@ -1,8 +1,8 @@
 import { Monopoly } from "./Monopoly";
 
 export class Compound extends Monopoly {
-    public x = 0;
-    public y = 0;
+    public x = Math.random();
+    public y = Math.random();
     public speed = 5;
 
     constructor() {
