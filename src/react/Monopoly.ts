@@ -4,6 +4,7 @@ export class Monopoly {
   public speed;
   public width = 0;
   public height = 0;
+  public index = this.getRandomIndex();
 
   constructor() {
     this.speed = 5;
@@ -15,9 +16,8 @@ export class Monopoly {
     [0, -1],
   ];
   public brownianMotion() {
-    const index = this.getRandomIndex();
-    this.x += this._directionIndex[index][0] * this.speed;
-    this.y += this._directionIndex[index][1] * this.speed;
+    this.x += this._directionIndex[this.index][0] * this.speed;
+    this.y += this._directionIndex[this.index][1] * this.speed;
     this.bounceBack();
   }
 
@@ -27,16 +27,16 @@ export class Monopoly {
 
   private bounceBack() {
     if (this.x > 500) {
-      this.x -= this.speed;
+      this.index = 1;
     }
     if (this.x < 0) {
-      this.x += this.speed;
+      this.index = 0;
     }
     if (this.y > 500) {
-      this.y -= this.speed;
+      this.index = 3;
     }
     if (this.y > 0) {
-      this.y += this.speed;
+      this.index = 2;
     }
   }
 }

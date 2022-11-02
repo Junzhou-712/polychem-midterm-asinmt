@@ -18,6 +18,15 @@ describe("Monopoly.vue", () => {
 
         expect(monopoly.x ^ monopoly.y).equal(1);
       };
+      it("Monopoly can bounce back (change its direction)"), () => {
+        const monopoly = createMonopoly();
+        monopoly.index = 0;
+        monopoly.x = 501;
+        monopoly.brownianMotion();
+
+        expect(monopoly.index).toBe(1);
+
+      }
   });
   it("Monopoly can create automatically", () => {
     vi.useFakeTimers();

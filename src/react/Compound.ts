@@ -12,7 +12,7 @@ export class Compound extends Monopoly {
 }
 
 export function createCompound() {
-
+    
 }
 
 export function moveCompound() {

@@ -24,10 +24,7 @@ type initReactOptions = {
   monopolys: Monopoly[];
   compounds: Compound[];
 };
-export function initReact(
-  { monopolys }: initReactOptions,
-  { compounds }: initReactOptions
-): initReactResult {
+export function initReact({ monopolys, compounds }): initReactResult {
   createMonopoly(monopolys);
   run(monopolys);
 
