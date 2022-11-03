@@ -8,7 +8,14 @@ export class Monopoly {
 
   constructor() {
     this.speed = 5;
+    this.generatePos(this.x,this.y);
   }
+
+  private generatePos(x:number, y:number) {
+    x = Math.floor(Math.random() * 500) - 250;
+    y = Math.floor(Math.random() * 500) - 250;
+  }
+
   private _directionIndex = [
     [1, 0],
     [-1, 0],
