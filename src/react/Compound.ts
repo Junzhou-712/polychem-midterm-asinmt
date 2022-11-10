@@ -15,6 +15,8 @@ export function createCompound() {
     
 }
 
-export function moveCompound() {
-
+export function moveCompound(compounds: Compound[]) {
+    compounds.forEach((compound) => {
+        compound.brownianMotion();
+      });
 }
