@@ -2,7 +2,8 @@
 export * from "./Monopoly";
 import { Application } from "pixi.js";
 import { createMonopoly, Monopoly, moveMonopolys } from "./Monopoly";
-import { createCompound, moveCompound, Compound } from "./Compound";
+import { moveCompound, Compound } from "./Compound";
+import { polymerize } from "./Polymerization";
 
 export let react: Application;
 
@@ -26,7 +27,7 @@ type initReactOptions = {
 };
 export function initReact({ monopolys, compounds }): initReactResult {
   createMonopoly(monopolys);
-  run(monopolys);
+  run(monopolys, compounds);
 
   return {
     monopolys,
@@ -34,8 +35,10 @@ export function initReact({ monopolys, compounds }): initReactResult {
   };
 }
 
-export function run(monopolys: Monopoly[]) {
+export function run(monopolys: Monopoly[], compounds: Compound[]) {
   react.ticker.add(() => {
     moveMonopolys(monopolys);
+    moveCompound(compounds);
+    polymerize(monopolys, compounds);
   });
 }

@@ -11,10 +11,6 @@ export class Compound extends Monopoly {
     
 }
 
-export function createCompound() {
-    
-}
-
 export function moveCompound(compounds: Compound[]) {
     compounds.forEach((compound) => {
         compound.brownianMotion();
