@@ -3,7 +3,7 @@ import { hitTestObject } from "./HitTestObject";
 import { Monopoly } from "./Monopoly";
 
 export function polymerize(monopoly: Monopoly[], compounds: Compound[]) {
-    for(let i = 0; i < monopoly.length; ++i) {
+    for(let i = 0; i < monopoly.length - 1; ++i) {
         for(let j = i+1; j < monopoly.length; ++j) {
             if(hitTestObject(monopoly[i], monopoly[j])) {
                 monopoly.splice(i,1);

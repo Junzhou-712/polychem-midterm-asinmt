@@ -20,7 +20,7 @@ const { monopoly } = defineProps({
 
 <style scoped>
 .Monopoly {
-    width: 20px;
-    height: 20px;
+    width: 5px;
+    height: 5px;
 }
 </style>
