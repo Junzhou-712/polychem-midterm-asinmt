@@ -8,7 +8,7 @@ import { polymerize } from "./Polymerization";
 export let react: Application;
 
 react = new Application({
-  width: 500,
+  width: 1500,
   height: 500,
 });
 
